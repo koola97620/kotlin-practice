@@ -39,9 +39,9 @@ class TaskQueue(progresses: IntArray, speeds: IntArray) {
         }
     }
 
-    fun getFirstRemainWorkload() : Int =
+    private fun getFirstRemainWorkload() : Int =
         if (!queue.isEmpty()) {
-            queue.peek().getRemainWorkload()
+            queue.peek().remainWorkDays
         } else
             0
 
@@ -52,13 +52,13 @@ class TaskQueue(progresses: IntArray, speeds: IntArray) {
 
         while(!queue.isEmpty()) {
             val task = queue.peek()
-            if (task.getRemainWorkload() <= criteria) {
+            if (task.isCompletedWork(criteria)) {
                 result++
                 queue.poll()
             } else {
                 list.add(result)
                 result = 0
-                criteria = task.getRemainWorkload()
+                criteria = task.remainWorkDays
             }
         }
         list.add(result)
@@ -67,15 +67,7 @@ class TaskQueue(progresses: IntArray, speeds: IntArray) {
 }
 
 class Task (progress: Int, speed: Int) {
-    private val remainWorkload: Int
-
-    init {
-        remainWorkload = calculateRemain(progress, speed)
-    }
-
-    fun getRemainWorkload() : Int {
-        return remainWorkload
-    }
+    val remainWorkDays: Int = calculateRemain(progress, speed)
 
     private fun calculateRemain(progress: Int, speed: Int) : Int {
         val remain = 100 - progress
@@ -85,5 +77,7 @@ class Task (progress: Int, speed: Int) {
             (remain / speed) + 1
         }
     }
+
+    fun isCompletedWork(criteria: Int) = remainWorkDays <= criteria
 
 }
