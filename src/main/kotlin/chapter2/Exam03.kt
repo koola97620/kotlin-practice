@@ -32,7 +32,7 @@ fun mixOptimized(c1 : Color, c2: Color) =
     }
 
 fun eval(e: Expr) : Int {
-    if ( e is Num) {
+    if (e is Num) {
         val n = e as Num
         return n.value
     }

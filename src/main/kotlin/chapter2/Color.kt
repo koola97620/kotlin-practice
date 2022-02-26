@@ -10,5 +10,6 @@ enum class Color(val r: Int, val g: Int, val b: Int) {
     VIOLET(238,140,238);
 
     fun rgb() = (r * 256 + g) * 256 + b
+    // Color.BLUE.rgb()
 
 }
