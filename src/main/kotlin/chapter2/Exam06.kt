@@ -67,7 +67,16 @@ fun readNumber2(reader: BufferedReader) {
     val number = try {
         Integer.parseInt(reader.readLine())
     } catch (e: NumberFormatException) {
-        return
+        null
     }
     println(number)
 }
+
+fun testException(number: Int) {
+    val percentage =
+        if (number in 0..100)
+            number
+        else
+            throw IllegalArgumentException("throw exception")
+}
+
