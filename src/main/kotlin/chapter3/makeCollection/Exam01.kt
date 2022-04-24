@@ -14,6 +14,12 @@ fun main(args: Array<String>) {
 
     val numbers = setOf(1,4,14)
     println(numbers.maxOrNull())
+
+    val map = hashMapOf(1 to "one", 7 to "seven", 53 to "fifty-three")
+
+    println(strings.javaClass)
+    println(numbers.javaClass)
+    println(map.javaClass)
 }
 
 
